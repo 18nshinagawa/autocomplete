@@ -1,11 +1,11 @@
 // test case
-entries = [{name: 'soap', price: 2}, {name: 'soda', price: 3}, {name: 'spam', price: 99}];
+entries = [{name: 'soda', price: 3}, {name: 'spam', price: 99}, {name: 'soap', price: 2}];
 
 initializeAutocomplete = (id) => {
     let div = document.createElement('div');
     div.id = 'autocomplete-population';
     document.getElementById(id).insertAdjacentElement('afterend', div);
-    populateAutocomplete(entries);
+    runAutocomplete('');
 
     document.getElementById(id).addEventListener('input', (event) => {
         runAutocomplete(event.target.value);
