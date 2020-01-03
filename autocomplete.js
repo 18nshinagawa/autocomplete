@@ -1,7 +1,5 @@
 // test case
-entries = ['soap', 'soda', 'spam', 'secret_item', 'a_thing', 'b_thing'];
-
-entries = entries.sort();
+entries = [{name: 'soap', price: 2}, {name: 'soda', price: 3}, {name: 'spam', price: 99}];
 
 initializeAutocomplete = (id) => {
     let div = document.createElement('div');
@@ -25,7 +23,7 @@ initializeAutocomplete = (id) => {
 runAutocomplete = (string) => {
     matches = [];
     for (entry in entries) {
-        if (entries[entry].indexOf(string) === 0) {
+        if (entries[entry].name.indexOf(string) === 0) {
             matches.push(entries[entry]);
         }
     }
@@ -41,8 +39,8 @@ populateAutocomplete = (matches) => {
 
     for (match in matches) {
         let div = document.createElement('div');
-        div.innerText = matches[match];
-        div.id = matches[match];
+        div.innerText = matches[match].name;
+        div.id = matches[match].name;
         div.addEventListener('click', (event) => {
             selectAutocomplete(event.target.id);
         });
