@@ -24,10 +24,10 @@ runAutocomplete = (string) => {
     matches = [];
     for (entry in entries) {
         if (entries[entry].name.indexOf(string) === 0) {
-            matches.push(entries[entry]);
+            matches.push(entries[entry].name);
         }
     }
-    populateAutocomplete(matches);
+    populateAutocomplete(matches.sort());
 }
 
 populateAutocomplete = (matches) => {
@@ -39,10 +39,14 @@ populateAutocomplete = (matches) => {
 
     for (match in matches) {
         let div = document.createElement('div');
-        div.innerText = matches[match].name;
-        div.id = matches[match].name;
+        div.innerText = matches[match];
+        div.id = matches[match];
         div.addEventListener('click', (event) => {
-            selectAutocomplete(event.target.id);
+            for (entry in entries) {
+                if (entries[entry].name === event.target.id) {   
+                    selectAutocomplete(entries[entry]);
+                }
+            }
         });
         document.getElementById('autocomplete-population').appendChild(div);
     }
